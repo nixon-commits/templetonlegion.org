@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Background circle -->
+  <circle cx="50" cy="50" r="50" fill="#003366"/>
+
+  <!-- Star (bigger) -->
+  <path d="M50 10 L58 38 L88 38 L64 56 L72 84 L50 66 L28 84 L36 56 L12 38 L42 38 Z" fill="#C41E3A"/>
+
+  <!-- Inner circle (bigger) -->
+  <circle cx="50" cy="50" r="20" fill="#FFFFFF"/>
+
+  <!-- "220" text (bigger and centered) -->
+  <text x="50" y="58" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#003366" text-anchor="middle" dominant-baseline="middle">220</text>
+</svg>
