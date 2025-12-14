@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>American Legion Post 220 - Templeton</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #003366;
+            --red: #C41E3A;
+            --white: #FFFFFF;
+            --gray: #F5F5F5;
+            --dark-gray: #333333;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--dark-gray);
+        }
+
+        /* Header & Navigation */
+        header {
+            background: var(--navy);
+            color: var(--white);
+            padding: 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .header-top {
+            background: var(--red);
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.9em;
+        }
+
+        .header-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .logo-section h1 {
+            font-size: 1.8em;
+            margin: 0;
+        }
+
+        .logo-section p {
+            margin: 0;
+            font-size: 0.9em;
+            opacity: 0.9;
+        }
+
+        nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            padding: 0.5rem 0;
+            border-bottom: 2px solid transparent;
+            transition: border-color 0.3s;
+        }
+
+        nav a:hover {
+            border-bottom-color: var(--red);
+        }
+
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--white);
+            font-size: 1.5em;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)),
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 400"><rect fill="%23003366" width="1200" height="400"/></svg>');
+            background-size: cover;
+            background-position: center;
+            color: var(--white);
+            padding: 4rem 5%;
+            text-align: center;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Main Content */
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 3rem 5%;
+        }
+
+        .section {
+            margin-bottom: 4rem;
+        }
+
+        .section-title {
+            font-size: 2em;
+            color: var(--navy);
+            margin-bottom: 1.5rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 3px solid var(--red);
+            display: inline-block;
+        }
+
+        /* Info Cards */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .card h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-size: 1.5em;
+        }
+
+        .card-icon {
+            font-size: 2.5em;
+            margin-bottom: 1rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.8rem 2rem;
+            background: var(--red);
+            color: var(--white);
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background 0.3s;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background: #a01729;
+        }
+
+        .btn-secondary {
+            background: var(--navy);
+        }
+
+        .btn-secondary:hover {
+            background: #002244;
+        }
+
+        /* Meeting Info Banner */
+        .meeting-banner {
+            background: var(--gray);
+            padding: 2rem;
+            border-left: 5px solid var(--red);
+            margin: 2rem 0;
+        }
+
+        .meeting-banner h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .meeting-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1rem;
+        }
+
+        .meeting-item strong {
+            color: var(--red);
+            display: block;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Calendar Styling */
+        .calendar-container {
+            margin: 2rem 0;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        /* Form Styling */
+        .form-container {
+            margin-top: 0;
+            overflow: hidden;
+            max-height: 0;
+            opacity: 0;
+            transition: max-height 0.5s ease, opacity 0.3s ease;
+        }
+
+        .form-container.active {
+            max-height: 2500px;
+            opacity: 1;
+            margin-top: 2rem;
+        }
+
+        .toggle-form-btn {
+            margin-top: 1rem;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--navy);
+            font-weight: 600;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1em;
+            font-family: inherit;
+        }
+
+        .form-group textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--red);
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+        }
+
+        .form-required {
+            color: var(--red);
+        }
+
+        .form-note {
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 0.3rem;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--navy);
+            color: var(--white);
+            padding: 3rem 5%;
+            margin-top: 4rem;
+        }
+
+        .footer-content {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .footer-section h4 {
+            margin-bottom: 1rem;
+            color: var(--red);
+        }
+
+        .footer-section a {
+            color: var(--white);
+            text-decoration: none;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .footer-section a:hover {
+            color: var(--red);
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 2rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255,255,255,0.1);
+        }
+
+        /* Content Sections */
+        .content-box {
+            background: var(--white);
+            padding: 2rem;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            margin-bottom: 2rem;
+        }
+
+        .content-box h3 {
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .content-box p {
+            margin-bottom: 1rem;
+        }
+
+        .content-box ul {
+            margin-left: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .content-box li {
+            margin-bottom: 0.5rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .header-main {
+                flex-wrap: wrap;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+                flex-direction: column;
+                gap: 0;
+            }
+
+            nav.active {
+                display: flex;
+            }
+
+            nav a {
+                padding: 1rem;
+                border-bottom: 1px solid rgba(255,255,255,0.1);
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .hero h2 {
+                font-size: 1.8em;
+            }
+
+            .cards {
+                grid-template-columns: 1fr;
+            }
+
+            .calendar-container iframe {
+                height: 400px;
+            }
+            
+            .form-row {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-top">
+            Serving Veterans and the Community for over 100 years
+        </div>
+        <div class="header-main">
+            <div class="logo-section">
+                <div>
+                    <h1>American Legion Post 220</h1>
+                    <p>Templeton, California</p>
+                </div>
+            </div>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <nav id="mainNav">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#events">Events</a>
+                <a href="#membership">Join</a>
+                <a href="#hall">Hall Rental</a>
+                <a href="#contact">Contact</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="hero" id="home">
+        <h2>Welcome to Post 220</h2>
+        <p>A Post is nothing without its members. Join us and start making an impact with a great group of dedicated Veterans.</p>
+        <a href="#membership" class="btn">Become a Member</a>
+    </section>
+
+    <div class="container">
+        <section class="section">
+            <div class="meeting-banner">
+                <h3>Meeting Schedule</h3>
+                <div class="meeting-info">
+                    <div class="meeting-item">
+                        <strong>Business Meetings</strong>
+                        Every 2nd Wednesday at 6:00 PM
+                    </div>
+                    <div class="meeting-item">
+                        <strong>Dinner Meetings</strong>
+                        Every 4th Wednesday at 6:00 PM
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="about">
+            <h2 class="section-title">About Post 220</h2>
+            <div class="content-box">
+                <p>The American Legion Post 220 has been serving veterans and the Templeton community for over 100 years. We are committed to supporting veterans, active duty personnel, and their families while giving back to our community.</p>
+                <p>Whether you're looking for camaraderie, ways to give back, or to honor your service, Post 220 is a place for you. Be part of something bigger and contribute to the legacy of those who have served. Your involvement makes a difference!</p>
+            </div>
+        </section>
+
+        <section class="section" id="events">
+            <h2 class="section-title">Upcoming Events</h2>
+            <div class="content-box">
+                <p>View our calendar below for all upcoming Post 220 meetings, events, and community activities.</p>
+                
+                <!-- Google Calendar Embed -->
+                <div class="calendar-container">
+                    <iframe src="https://calendar.google.com/calendar/embed?src=c_2907b8acbcb342f427b064825a6b8b563724fd0ae67083819f87a38583225f47%40group.calendar.google.com&ctz=America%2FLos_Angeles&showTitle=0&showNav=1&showDate=1&showPrint=0&showTabs=1&showCalendars=0&mode=MONTH" 
+                            style="border: 0" 
+                            width="100%" 
+                            height="600" 
+                            frameborder="0" 
+                            scrolling="no">
+                    </iframe>
+                </div>
+                
+                <p style="margin-top: 1.5rem; font-size: 0.9em; color: #666;">
+                    <strong>Note:</strong> All times are shown in Pacific Time. For more information about any event, please <a href="#contact" style="color: var(--red);">contact us</a>.
+                </p>
+            </div>
+        </section>
+
+        <section class="section">
+            <h2 class="section-title">What We Do</h2>
+            <div class="cards">
+                <div class="card">
+                    <div class="card-icon">🎖️</div>
+                    <h3>Veteran Support</h3>
+                    <p>We provide assistance and resources to veterans and their families, ensuring they receive the support they've earned through their service.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">🤝</div>
+                    <h3>Community Service</h3>
+                    <p>Our post actively participates in community events and initiatives, strengthening the bond between veterans and the local community.</p>
+                </div>
+                <div class="card">
+                    <div class="card-icon">👥</div>
+                    <h3>Camaraderie</h3>
+                    <p>Connect with fellow veterans who understand your experiences and share your commitment to service and patriotism.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="hall">
+            <h2 class="section-title">Templeton Legion Hall</h2>
+            <div class="content-box">
+                <h3>Historic Venue Available for Events</h3>
+                <p>Built in 1924, the Templeton Legion Hall has hosted countless events over the years. From school dances to weekly dinners and everything in between, our historic venue is available for your special occasions.</p>
+                <ul>
+                    <li>Community events</li>
+                    <li>Private parties</li>
+                    <li>Fundraisers</li>
+                    <li>Wedding receptions</li>
+                    <li>And more!</li>
+                </ul>
+            </div>
+
+            <div class="content-box">
+                <h3>Hall Rental Inquiry</h3>
+                <p>Interested in renting our historic hall? Fill out the form below and we'll contact you with availability and pricing information.</p>
+                
+                <button class="btn toggle-form-btn" onclick="toggleForm('rentalForm', this)">Show Rental Form ▼</button>
+                
+                <div id="rentalForm" class="form-container">
+                    <form action="https://formspree.io/f/meorlvkr" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="rental-name">Full Name <span class="form-required">*</span></label>
+                                <input type="text" id="rental-name" name="name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rental-company">Company/Organization (Optional)</label>
+                                <input type="text" id="rental-company" name="company" placeholder="If applicable">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="rental-email">Email <span class="form-required">*</span></label>
+                                <input type="email" id="rental-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rental-phone">Phone Number <span class="form-required">*</span></label>
+                                <input type="tel" id="rental-phone" name="phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="rental-date">Preferred Date <span class="form-required">*</span></label>
+                                <input type="date" id="rental-date" name="event-date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="rental-type">Event Type <span class="form-required">*</span></label>
+                                <select id="rental-type" name="event-type" required>
+                                    <option value="">Select Event Type</option>
+                                    <option value="Wedding Reception">Wedding Reception</option>
+                                    <option value="Birthday Party">Birthday Party</option>
+                                    <option value="Anniversary">Anniversary</option>
+                                    <option value="Community Event">Community Event</option>
+                                    <option value="Fundraiser">Fundraiser</option>
+                                    <option value="Meeting/Conference">Meeting/Conference</option>
+                                    <option value="Other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="rental-guests">Expected Number of Guests</label>
+                                <input type="number" id="rental-guests" name="guest-count" min="1" placeholder="e.g., 50">
+                            </div>
+                            <div class="form-group">
+                                <label for="rental-start">Start Time</label>
+                                <input type="time" id="rental-start" name="start-time">
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="rental-end">End Time</label>
+                                <input type="time" id="rental-end" name="end-time">
+                            </div>
+                            <div class="form-group">
+                                <!-- Empty for alignment -->
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="rental-details">Additional Details or Special Requests</label>
+                            <textarea id="rental-details" name="details" placeholder="Please provide any additional information about your event, special requirements, setup needs, etc."></textarea>
+                        </div>
+
+                        <input type="hidden" name="_subject" value="Hall Rental Inquiry - Post 220">
+                        
+                        <button type="submit" class="btn">Submit Rental Inquiry</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="membership">
+            <h2 class="section-title">Join Post 220</h2>
+            <div class="content-box">
+                <h3>Membership Eligibility</h3>
+                <p>To be eligible for membership in The American Legion, you must have served on federal active duty in the United States Armed Forces and have been honorably discharged, or are still serving on active duty.</p>
+                <p>Select your period of service when filling out the membership form below.</p>
+            </div>
+
+            <div class="content-box">
+                <h3>Request Membership Information</h3>
+                <p>Fill out the form below and we'll get back to you with information about joining Post 220.</p>
+                
+                <button class="btn toggle-form-btn" onclick="toggleForm('membershipForm', this)">Show Membership Form ▼</button>
+                
+                <div id="membershipForm" class="form-container">
+                    <form action="https://formspree.io/f/mwprnapd" method="POST">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="join-first-name">First Name <span class="form-required">*</span></label>
+                                <input type="text" id="join-first-name" name="First Name" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="join-last-name">Last Name <span class="form-required">*</span></label>
+                                <input type="text" id="join-last-name" name="Last Name" required>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="join-email">Email <span class="form-required">*</span></label>
+                                <input type="email" id="join-email" name="email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="join-phone">Phone Number <span class="form-required">*</span></label>
+                                <input type="tel" id="join-phone" name="Phone" required>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="join-eligibility">Period of Service (Eligibility) <span class="form-required">*</span></label>
+                            <select id="join-eligibility" name="Eligibility Period" required>
+                                <option value="">Select Your Service Period</option>
+                                <option value="World War I (April 6, 1917 - November 11, 1918)">World War I (April 6, 1917 - November 11, 1918)</option>
+                                <option value="World War II (December 7, 1941 - December 31, 1946)">World War II (December 7, 1941 - December 31, 1946)</option>
+                                <option value="Korean War (June 25, 1950 - January 31, 1955)">Korean War (June 25, 1950 - January 31, 1955)</option>
+                                <option value="Vietnam War (February 28, 1961 - May 7, 1975)">Vietnam War (February 28, 1961 - May 7, 1975)</option>
+                                <option value="Lebanon, Grenada, Panama (August 24, 1982 - December 31, 1987)">Lebanon, Grenada, Panama (August 24, 1982 - December 31, 1987)</option>
+                                <option value="Gulf War / War on Terrorism (August 2, 1990 - Present)">Gulf War / War on Terrorism (August 2, 1990 - Present)</option>
+                            </select>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="join-branch">Branch of Service <span class="form-required">*</span></label>
+                            <select id="join-branch" name="Branch of Service" required>
+                                <option value="">Select Branch</option>
+                                <option value="Army">Army</option>
+                                <option value="Navy">Navy</option>
+                                <option value="Air Force">Air Force</option>
+                                <option value="Marine Corps">Marine Corps</option>
+                                <option value="Coast Guard">Coast Guard</option>
+                                <option value="Space Force">Space Force</option>
+                            </select>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="join-service-dates">Service Dates</label>
+                                <input type="text" id="join-service-dates" name="Service Dates" placeholder="e.g., 2001-2005">
+                            </div>
+                            <div class="form-group">
+                                <label for="join-discharge">Discharge Status</label>
+                                <select id="join-discharge" name="Discharge Status">
+                                    <option value="">Select Status</option>
+                                    <option value="Honorable">Honorable</option>
+                                    <option value="General">General</option>
+                                    <option value="Still Serving">Still Serving</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="join-message">Additional Information or Questions</label>
+                            <textarea id="join-message" name="Message" placeholder="Tell us a bit about yourself or ask any questions..."></textarea>
+                        </div>
+
+                        <input type="hidden" name="_subject" value="New Membership Inquiry - Post 220">
+                        
+                        <button type="submit" class="btn">Submit Membership Request</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="contact">
+            <h2 class="section-title">Contact Us</h2>
+            <div class="cards">
+                <div class="card">
+                    <h3>Visit Us</h3>
+                    <p><strong>Physical Address:</strong><br>
+                    805 S. Main Street<br>
+                    Templeton, CA 93465</p>
+                    <p style="margin-top: 1rem;"><strong>Mailing Address:</strong><br>
+                    PO Box 485<br>
+                    Templeton, CA 93465</p>
+                </div>
+                <div class="card">
+                    <h3>Get In Touch</h3>
+                    <p><strong>Phone:</strong><br>
+                    <a href="tel:8327906617" style="color: var(--navy); text-decoration: none;">(832) 790-6617</a></p>
+                    <p style="margin-top: 1rem;"><strong>Email:</strong><br>
+                    <a href="mailto:post220@templetonlegion.org" style="color: var(--navy); text-decoration: none;">post220@templetonlegion.org</a></p>
+                </div>
+                <div class="card">
+                    <h3>Office Hours</h3>
+                    <p><strong>Meetings:</strong><br>
+                    Business: 2nd Wednesday, 6:00 PM<br>
+                    Dinner: 4th Wednesday, 6:00 PM</p>
+                    <p style="margin-top: 1rem;">For general inquiries, please call or email us. We look forward to hearing from you!</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>American Legion Post 220</h4>
+                <p>805 S. Main Street<br>
+                Templeton, CA 93465</p>
+                <p style="margin-top: 0.5rem;">PO Box 485<br>
+                Templeton, CA 93465</p>
+                <p style="margin-top: 0.5rem;">
+                Phone: <a href="tel:8327906617" style="color: var(--white);">(832) 790-6617</a><br>
+                Email: <a href="mailto:post220@templetonlegion.org" style="color: var(--white);">post220@templetonlegion.org</a>
+                </p>
+            </div>
+            <div class="footer-section">
+                <h4>Quick Links</h4>
+                <a href="#home">Home</a>
+                <a href="#about">About Us</a>
+                <a href="#events">Events</a>
+                <a href="#membership">Membership</a>
+                <a href="#hall">Hall Rental</a>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <a href="https://www.legion.org" target="_blank">The American Legion</a>
+                <a href="https://www.calegion.org" target="_blank">California American Legion</a>
+                <a href="https://www.va.gov" target="_blank">Veterans Affairs</a>
+            </div>
+            <div class="footer-section">
+                <h4>Meeting Schedule</h4>
+                <p>Business Meetings:<br>2nd Wednesday at 6:00 PM</p>
+                <p style="margin-top: 0.5rem;">Dinner Meetings:<br>4th Wednesday at 6:00 PM</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 American Legion Post 220, Templeton. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            const nav = document.getElementById('mainNav');
+            nav.classList.toggle('active');
+        }
+
+        function toggleForm(formId, button) {
+            const form = document.getElementById(formId);
+            const isActive = form.classList.contains('active');
+            
+            if (isActive) {
+                form.classList.remove('active');
+                button.classList.remove('active');
+                if (formId === 'membershipForm') {
+                    button.textContent = 'Show Membership Form ▼';
+                } else if (formId === 'rentalForm') {
+                    button.textContent = 'Show Rental Form ▼';
+                }
+            } else {
+                form.classList.add('active');
+                button.classList.add('active');
+                if (formId === 'membershipForm') {
+                    button.textContent = 'Hide Membership Form ▲';
+                } else if (formId === 'rentalForm') {
+                    button.textContent = 'Hide Rental Form ▲';
+                }
+            }
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                    // Close mobile menu if open
+                    document.getElementById('mainNav').classList.remove('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
