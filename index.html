@@ -397,6 +397,71 @@
             margin-bottom: 0.5rem;
         }
 
+        /* Photo Gallery */
+        .photo-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .photo-gallery img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .photo-gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        /* Lightbox Modal */
+        .lightbox {
+            display: none;
+            position: fixed;
+            z-index: 2000;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            object-fit: contain;
+            border-radius: 8px;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 40px;
+            color: var(--white);
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .lightbox-close:hover {
+            color: var(--red);
+        }
+
         /* Responsive Design */
         @media (max-width: 768px) {
             .header-main {
@@ -551,6 +616,22 @@
                     <li>Wedding receptions</li>
                     <li>And more!</li>
                 </ul>
+            </div>
+
+            <div class="content-box">
+                <h3>Hall Photos</h3>
+                <p>Take a look at our beautiful historic hall. Click any photo to view it larger.</p>
+                <div class="photo-gallery">
+                    <img src="images/hall/1A49980A-E024-40AA-9B1C-1FA8C67061EB_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                    <img src="images/hall/365627AC-6100-48CA-B49C-D032997C5216_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                    <img src="images/hall/49FBA24C-9AF5-416D-8EC3-56640A8365B2_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                    <img src="images/hall/8CB295A6-5071-4B21-B964-D371AFDD0960_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                    <img src="images/hall/A8F0392F-FD47-4BD7-BA3B-551190532386_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                    <img src="images/hall/ABA0EA20-BC58-4764-9045-A034673685F3_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                    <img src="images/hall/B80C8EFB-2A18-4BC7-A585-0E127C195600_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                    <img src="images/hall/EDF20C5F-E059-4B17-B125-3B5A91A00A22_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                    <img src="images/hall/FA68B42A-D571-4EF5-9761-C6ED4E339E28_1_105_c.jpeg" alt="Templeton Legion Hall Interior" onclick="openLightbox(this.src)">
+                </div>
             </div>
 
             <div class="content-box">
@@ -760,6 +841,12 @@
         </section>
     </div>
 
+    <!-- Lightbox Modal -->
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+        <img id="lightbox-img" src="" alt="Hall photo">
+    </div>
+
     <footer>
         <div class="footer-content">
             <div class="footer-section">
@@ -841,6 +928,28 @@
                     document.getElementById('mainNav').classList.remove('active');
                 }
             });
+        });
+
+        // Lightbox functions
+        function openLightbox(imageSrc) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeLightbox() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Close lightbox with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closeLightbox();
+            }
         });
     </script>
 </body>
