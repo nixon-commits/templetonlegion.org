@@ -39,7 +39,7 @@
 
         :root {
             --navy: #003366;
-            --red: #C41E3A;
+            --red: #204F2E;
             --white: #FFFFFF;
             --gray: #F5F5F5;
             --dark-gray: #333333;
@@ -53,10 +53,10 @@
 
         /* Header & Navigation */
         header {
-            background: var(--navy);
+            background: rgba(0, 51, 102, 0.7);
             color: var(--white);
             padding: 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            box-shadow: none;
             position: sticky;
             top: 0;
             z-index: 1000;
@@ -134,6 +134,8 @@
             background-position: center;
             color: var(--white);
             padding: 4rem 5%;
+            padding-top: calc(4rem + 100px);
+            margin-top: -100px;
             text-align: center;
             min-height: 400px;
             display: flex;
