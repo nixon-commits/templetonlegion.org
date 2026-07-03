@@ -11,3 +11,6 @@
 
 # Node modules (if you add any tooling later)
 node_modules/
+
+# Brainstorming visual companion scratch files
+.superpowers/
