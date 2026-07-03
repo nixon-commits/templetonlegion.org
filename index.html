@@ -30,6 +30,11 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg">
     <link rel="alternate icon" type="image/png" href="/favicon.png">
     <link rel="apple-touch-icon" href="/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Lora:wght@600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -39,14 +44,20 @@
 
         :root {
             --navy: #003366;
-            --red: #204F2E;
+            --accent: #2E6B45;
+            --accent-hover: #234F34;
+            --accent-light: #6FBF8B;
             --white: #FFFFFF;
             --gray: #F5F5F5;
             --dark-gray: #333333;
+            --border-subtle: #e8e6df;
+            --radius: 10px;
+            --shadow-sm: 0 1px 3px rgba(0, 51, 102, 0.06);
+            --shadow-md: 0 4px 16px rgba(0, 51, 102, 0.1);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
             color: var(--dark-gray);
         }
@@ -63,7 +74,7 @@
         }
 
         .header-top {
-            background: var(--red);
+            background: var(--accent);
             padding: 10px 0;
             text-align: center;
             font-size: 0.9em;
@@ -114,7 +125,7 @@
         }
 
         nav a:hover {
-            border-bottom-color: var(--red);
+            border-bottom-color: var(--accent);
         }
 
         .header-social {
@@ -129,7 +140,7 @@
             justify-content: center;
             width: 35px;
             height: 35px;
-            background: var(--red);
+            background: var(--accent);
             border-radius: 50%;
             color: var(--white);
             text-decoration: none;
@@ -137,7 +148,7 @@
         }
 
         .header-social a:hover {
-            background: #a01729;
+            background: var(--accent-hover);
             transform: scale(1.1);
         }
 
@@ -197,7 +208,7 @@
             color: var(--navy);
             margin-bottom: 1.5rem;
             padding-bottom: 0.5rem;
-            border-bottom: 3px solid var(--red);
+            border-bottom: 3px solid var(--accent);
             display: inline-block;
         }
 
@@ -237,7 +248,7 @@
         .btn {
             display: inline-block;
             padding: 0.8rem 2rem;
-            background: var(--red);
+            background: var(--accent);
             color: var(--white);
             text-decoration: none;
             border-radius: 4px;
@@ -248,7 +259,7 @@
         }
 
         .btn:hover {
-            background: #a01729;
+            background: var(--accent-hover);
         }
 
         .btn-secondary {
@@ -263,7 +274,7 @@
         .meeting-banner {
             background: var(--gray);
             padding: 2rem;
-            border-left: 5px solid var(--red);
+            border-left: 5px solid var(--accent);
             margin: 2rem 0;
         }
 
@@ -280,7 +291,7 @@
         }
 
         .meeting-item strong {
-            color: var(--red);
+            color: var(--accent);
             display: block;
             margin-bottom: 0.3rem;
         }
@@ -343,7 +354,7 @@
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: var(--red);
+            border-color: var(--accent);
         }
 
         .form-row {
@@ -353,7 +364,7 @@
         }
 
         .form-required {
-            color: var(--red);
+            color: var(--accent);
         }
 
         .form-note {
@@ -380,7 +391,7 @@
 
         .footer-section h4 {
             margin-bottom: 1rem;
-            color: var(--red);
+            color: var(--accent-light);
         }
 
         .footer-section a {
@@ -391,7 +402,7 @@
         }
 
         .footer-section a:hover {
-            color: var(--red);
+            color: var(--accent-light);
         }
 
         .social-links {
@@ -406,7 +417,7 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background: var(--red);
+            background: var(--accent);
             border-radius: 50%;
             color: var(--white);
             text-decoration: none;
@@ -415,7 +426,7 @@
         }
 
         .social-links a:hover {
-            background: #a01729;
+            background: var(--accent-hover);
             transform: scale(1.1);
         }
 
@@ -515,7 +526,7 @@
         }
 
         .lightbox-close:hover {
-            color: var(--red);
+            color: var(--accent);
         }
 
         /* Responsive Design */
@@ -651,7 +662,7 @@
                 </div>
                 
                 <p style="margin-top: 1.5rem; font-size: 0.9em; color: #666;">
-                    <strong>Note:</strong> All times are shown in Pacific Time. For more information about any event, please <a href="#contact" style="color: var(--red);">contact us</a>.
+                    <strong>Note:</strong> All times are shown in Pacific Time. For more information about any event, please <a href="#contact" style="color: var(--accent);">contact us</a>.
                 </p>
             </div>
         </section>
