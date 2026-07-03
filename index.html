@@ -101,6 +101,8 @@
         }
 
         .logo-section h1 {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: 600;
             font-size: 1.8em;
             margin: 0;
         }
@@ -163,13 +165,13 @@
 
         /* Hero Section */
         .hero {
-            background: linear-gradient(rgba(0, 51, 102, 0.7), rgba(0, 51, 102, 0.7)),
+            background: linear-gradient(rgba(0, 51, 102, 0.72), rgba(0, 45, 90, 0.85)),
                         url('images/banner.jpeg');
             background-size: cover;
             background-position: center;
             color: var(--white);
-            padding: 4rem 5%;
-            padding-top: calc(4rem + 100px);
+            padding: clamp(2.5rem, 6vw, 4rem) 5%;
+            padding-top: calc(clamp(2.5rem, 6vw, 4rem) + 100px);
             margin-top: -100px;
             text-align: center;
             min-height: 400px;
@@ -180,16 +182,20 @@
         }
 
         .hero h2 {
-            font-size: 2.5em;
+            font-family: 'Lora', Georgia, serif;
+            font-weight: 700;
+            font-size: clamp(1.8rem, 4vw + 1rem, 2.5em);
             margin-bottom: 1rem;
+            letter-spacing: 0.2px;
         }
 
         .hero p {
-            font-size: 1.2em;
+            font-size: clamp(1rem, 1.5vw + 0.7rem, 1.2em);
             margin-bottom: 2rem;
             max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            color: #eef2f6;
         }
 
         /* Main Content */
@@ -557,10 +563,6 @@
 
             .mobile-menu-btn {
                 display: block;
-            }
-
-            .hero h2 {
-                font-size: 1.8em;
             }
 
             .cards {
